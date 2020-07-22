@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+    nginx.ingress.kubernetes.io/auth-tls-secret: infranauts-meetup/grpc-server-certificates
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "2"
+    nginx.ingress.kubernetes.io/backend-protocol: GRPCS
+    nginx.ingress.kubernetes.io/grpc-backend: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+  name: grpc-server-ingress
+  namespace: infranauts-meetup
+spec:
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - backend:
+              serviceName: grpc-server
+              servicePort: 10002
+            path: /
+  tls:
+    - hosts:
+      - localhost
+      secretName: grpc-server-certificates

@@ -1,0 +1,54 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  namespace: infranauts-meetup
+  name: node-grpc-server
+  labels:
+    app: node-grpc-server
+spec:
+  selector:
+    matchLabels:
+      app: node-grpc-server
+  template:
+    metadata:
+      labels:
+        app: node-grpc-server
+        name: node-grpc-server
+    spec:
+      containers:
+        - name: node-grpc-server
+          image: hksk8s/node-grpc-server
+          command:
+            - node
+          args:
+            - --max-old-space-size=2048
+            - server.js
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1000m"
+            limits:
+              memory: "4Gi"
+              cpu: "2000m"
+          ports:
+            - containerPort: 50051
+              name: grpc
+          readinessProbe:
+            tcpSocket:
+              port: grpc
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          livenessProbe:
+            tcpSocket:
+              port: grpc
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          volumeMounts:
+              - name: grpc-server-certificates
+                mountPath: app/Certs/
+                readOnly: true
+
+      volumes:
+      - name: grpc-server-certificates
+        secret:
+          secretName: grpc-server-certificates
