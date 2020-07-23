@@ -44,11 +44,11 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 30
           volumeMounts:
-              - name: grpc-server-certificates
-                mountPath: app/Certs/
-                readOnly: true
+            - name: grpc-server-certificates
+              mountPath: app/Certs/
+              readOnly: true
 
       volumes:
-      - name: grpc-server-certificates
-        secret:
-          secretName: grpc-server-certificates
+        - name: grpc-server-certificates
+          secret:
+            secretName: grpc-server-certificates
