@@ -17,7 +17,7 @@ WORKDIR /app
 # install node modules separately for pre-cache
 ADD package.json .
 ADD yarn.lock .
-RUN echo -e "//npmreg.labgsd.com:4873/:_authToken=$NPM_TOKEN\n@hks:registry=http://npmreg.labgsd.com:4873/" >> .npmrc && yarn install --ignore-engines --pure-lockfile
+RUN yarn install --ignore-engines --pure-lockfile
 
 # create /app and add files, node_modules is ignored in .dockerignore
 ADD . .

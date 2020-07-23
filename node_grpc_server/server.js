@@ -17,23 +17,16 @@ let packageDefinition = protoLoader.loadSync(
 );
 let EmployeeService = grpc.loadPackageDefinition(packageDefinition).employee.EmployeeService;
 
-// let credentials = grpc.ServerCredentials.createSsl(
-//     fs.readFileSync('/app/Certs/grpc-root-ca-and-grpc-services-ca-chain.crt'), [{
-//     cert_chain: fs.readFileSync('/app/Certs/grpc-proxy-server.crt'),
-//     private_key: fs.readFileSync('/app/Certs/grpc-proxy-server.key')
-// }], false);
-
 let credentials = grpc.ServerCredentials.createSsl(
-    fs.readFileSync('./Certs/grpc-root-ca-and-grpc-services-ca-chain.crt'), [{
-    cert_chain: fs.readFileSync('./Certs/grpc-proxy-server.crt'),
-    private_key: fs.readFileSync('./Certs/grpc-proxy-server.key')
-}], true);
+    fs.readFileSync('../certificates/certificatesChain/grpc-root-ca-and-grpc-server-ca-chain.crt'), [{
+        cert_chain: fs.readFileSync('../certificates/serverCertificates/grpc-server.crt'),
+        private_key: fs.readFileSync('../certificates/serverCertificates/grpc-server.key')
+    }], true);
 
 
 function getDetails(call, callback) {
     console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    console.log(call.metadata._internal_repr.cluster_id.toString());
-    console.log(JSON.stringify(call.metadata._internal_repr.cluster_id));
+    console.log(JSON.stringify(call.metadata._internal_repr.cluster_id_value));
     console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     callback(null, {message: _.find(employees, {id: call.request.id})});
 }
