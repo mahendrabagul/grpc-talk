@@ -18,10 +18,16 @@ let packageDefinition = protoLoader.loadSync(
 let EmployeeService = grpc.loadPackageDefinition(packageDefinition).employee.EmployeeService;
 
 let credentials = grpc.ServerCredentials.createSsl(
-    fs.readFileSync('../certificates/certificatesChain/grpc-root-ca-and-grpc-server-ca-chain.crt'), [{
-        cert_chain: fs.readFileSync('../certificates/serverCertificates/grpc-server.crt'),
-        private_key: fs.readFileSync('../certificates/serverCertificates/grpc-server.key')
-    }], true);
+    fs.readFileSync('/app/Certs/grpc-root-ca-and-grpc-server-ca-chain.crt'), [{
+    cert_chain: fs.readFileSync('/app/Certs/grpc-server.crt'),
+    private_key: fs.readFileSync('/app/Certs/grpc-server.key')
+}], true);
+
+// let credentials = grpc.ServerCredentials.createSsl(
+//     fs.readFileSync('../certificates/certificatesChain/grpc-root-ca-and-grpc-server-ca-chain.crt'), [{
+//         cert_chain: fs.readFileSync('../certificates/serverCertificates/grpc-server.crt'),
+//         private_key: fs.readFileSync('../certificates/serverCertificates/grpc-server.key')
+//     }], true);
 
 
 function getDetails(call, callback) {

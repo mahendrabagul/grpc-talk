@@ -1,16 +1,6 @@
 FROM mhart/alpine-node:10.21.0
 
-MAINTAINER HKS Developers <developers@hks.io>
-
-# install required packages
-RUN apk --update add build-base python libc6-compat
-# added below command that resolves root user blank password
-RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
-# added below command for shadow file permissions
-RUN chmod 600 /etc/shadow
-
-# install dependencies
-ARG NPM_TOKEN
+MAINTAINER mahendrabagul <bagulm123@gmail.com>
 
 WORKDIR /app
 

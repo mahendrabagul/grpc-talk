@@ -18,8 +18,8 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: grpc-server
-              servicePort: 10002
+              serviceName: node-grpc-server
+              servicePort: 30110
             path: /
   tls:
     - hosts:
