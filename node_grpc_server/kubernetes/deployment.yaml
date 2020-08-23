@@ -18,18 +18,19 @@ spec:
       containers:
         - name: node-grpc-server
           image: mahendrabagul/node-grpc-server
+          imagePullPolicy: Always
           command:
             - node
           args:
             - --max-old-space-size=2048
             - server.js
-#          resources:
-#            requests:
-#              memory: "2Gi"
-#              cpu: "1000m"
-#            limits:
-#              memory: "4Gi"
-#              cpu: "2000m"
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "400Mi"
+              cpu: "200m"
           ports:
             - containerPort: 50051
               name: grpc
@@ -51,21 +52,3 @@ spec:
         - name: grpc-server-certificates
           secret:
             secretName: grpc-server-certificates
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: infranauts-meetup
-  labels:
-    app: node-grpc-server
-  name: node-grpc-server
-spec:
-  ports:
-    - name: grpc
-      port: 50051
-      targetPort: grpc
-      nodePort: 30110
-      protocol: TCP
-  selector:
-    app: node-grpc-server
-  type: NodePort

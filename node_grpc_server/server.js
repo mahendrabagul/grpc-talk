@@ -32,7 +32,7 @@ let credentials = grpc.ServerCredentials.createSsl(
 
 function getDetails(call, callback) {
     console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    console.log(JSON.stringify(call.metadata._internal_repr.cluster_id_value));
+    console.log(JSON.stringify(call.metadata._internal_repr));
     console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     callback(null, {message: _.find(employees, {id: call.request.id})});
 }

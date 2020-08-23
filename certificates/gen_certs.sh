@@ -1,7 +1,7 @@
 echo "==================================================================="
 echo "Creating rootCA folder ..."
 mkdir -p rootCA
-cd rootCA
+cd rootCA || exit
 echo "Generating Root CA certificate ..."
 echo "==================================================================="
 openssl genrsa -passout pass:1111 -out grpc-root-ca.key 4096
@@ -11,7 +11,7 @@ cd ..
 echo "==================================================================="
 echo "Creating clientCA folder ..."
 mkdir -p clientCA
-cd clientCA
+cd clientCA || exit
 echo "Generating gRPC Client Intermediate CA certificate ..."
 echo "==================================================================="
 openssl req -nodes -new -keyout grpc-client-ca.key -out grpc-client-ca.csr -subj "/C=IN/ST=MH/L=Pune/O=InfraCloud/OU=InfraNauts Meetup/CN=Client Intermediate CA" -config ../openssl.cnf -passout pass:1111
@@ -21,7 +21,7 @@ cd ..
 echo "==================================================================="
 echo "Creating serverCA folder ..."
 mkdir -p serverCA
-cd serverCA
+cd serverCA || exit
 echo "Generating gRPC Server Intermediate CA certificate ..."
 echo "==================================================================="
 openssl req -nodes -new -keyout grpc-server-ca.key -out grpc-server-ca.csr -subj "/C=IN/ST=MH/L=Pune/O=InfraCloud/OU=InfraNauts Meetup/CN=Server Intermediate CA" -config ../openssl.cnf -passout pass:1111
@@ -31,7 +31,7 @@ cd ..
 echo "==================================================================="
 echo "Creating serverCertificates folder ..."
 mkdir -p serverCertificates
-cd serverCertificates
+cd serverCertificates || exit
 echo "Generating gRPC Server certificate ..."
 echo "==================================================================="
 openssl req -nodes -new -keyout grpc-server.key -out grpc-server.csr -subj "/C=IN/ST=MH/L=Pune/O=InfraCloud/OU=InfraNauts Meetup/CN=grpc-server" -config ../openssl.cnf -passout pass:1111
@@ -41,7 +41,7 @@ cd ..
 echo "==================================================================="
 echo "Creating clientCertificates folder ..."
 mkdir -p clientCertificates
-cd clientCertificates
+cd clientCertificates || exit
 echo "Generating gRPC Client certificate ..."
 echo "==================================================================="
 openssl req -nodes -new -keyout grpc-client.key -out grpc-client.csr -subj "/C=IN/ST=MH/L=Pune/O=InfraCloud/OU=InfraNauts Meetup/CN=grpc-client" -config ../openssl.cnf -passout pass:1111
@@ -51,7 +51,7 @@ cd ..
 echo "==================================================================="
 echo "Creating certificatesChain folder ..."
 mkdir -p certificatesChain
-cd certificatesChain
+cd certificatesChain || exit
 echo "Generating certificate chain..."
 echo "==================================================================="
 cat ../clientCA/grpc-client-ca.crt ../serverCA/grpc-server-ca.crt ../rootCA/grpc-root-ca.crt > grpc-root-ca-and-grpc-client-ca-and-grpc-server-ca-chain.crt

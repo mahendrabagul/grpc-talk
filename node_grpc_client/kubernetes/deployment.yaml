@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: infranauts-meetup
+  name: node-grpc-client
+  labels:
+    app: node-grpc-client
+spec:
+  selector:
+    matchLabels:
+      app: node-grpc-client
+  template:
+    metadata:
+      labels:
+        app: node-grpc-client
+        name: node-grpc-client
+    spec:
+      containers:
+        - name: node-grpc-client
+          image: mahendrabagul/node-grpc-client
+          imagePullPolicy: Always
+          command:
+            - node
+          args:
+            - client.js
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "100m"
+            limits:
+              memory: "400Mi"
+              cpu: "200m"
+          volumeMounts:
+          - name: grpc-client-certificates
+            mountPath: app/Certs/
+            readOnly: true
+      volumes:
+        - name: grpc-client-certificates
+          secret:
+            secretName: grpc-client-certificates
