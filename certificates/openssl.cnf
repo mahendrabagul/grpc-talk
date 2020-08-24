@@ -45,4 +45,6 @@ nsComment               = "OpenSSL Generated Server Certificate"
 subjectAltName          = @alt_names
 [ alt_names ]
 DNS.1                   = localhost
-DNS.2                   = node-grpc-server.infranauts-meetup.svc.cluster.local
+DNS.2                   = node-grpc-server
+DNS.3                   = 192.168.1.11
+DNS.4                   = 192.168.1.12

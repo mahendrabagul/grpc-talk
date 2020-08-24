@@ -31,9 +31,9 @@ spec:
               memory: "400Mi"
               cpu: "200m"
           volumeMounts:
-          - name: grpc-client-certificates
-            mountPath: app/Certs/
-            readOnly: true
+            - name: grpc-client-certificates
+              mountPath: app/Certs/
+              readOnly: true
       volumes:
         - name: grpc-client-certificates
           secret:

@@ -20,6 +20,7 @@ let generateCredentials = () => {
     //     fs.readFileSync('../certificates/clientCertificates/grpc-client.key'),
     //     fs.readFileSync('../certificates/clientCertificates/grpc-client.crt')
     // );
+
     const clientInfo = grpc.credentials.createFromMetadataGenerator((args, callback) => {
         const metadata = new grpc.Metadata();
         metadata.add('clientMetadata', '6fe12610-3d06-4f4f-944b-9be83a309e9e');
@@ -43,7 +44,9 @@ let EmployeeService = grpc.loadPackageDefinition(packageDefinition).employee.Emp
 
 function main() {
     // let client = new EmployeeService('rebrand-hec-proxygrpc.labgsd.com:443', generateCredentials(), channel_options);
-    let client = new EmployeeService('node-grpc-server.infranauts-meetup.svc.cluster.local:50051', generateCredentials(), channel_options);
+    // let client = new EmployeeService('node-grpc-server:50051',  grpc.credentials.createInsecure());
+    // let client = new EmployeeService('192.168.1.11:30110',  grpc.credentials.createInsecure());
+    let client = new EmployeeService('node-grpc-server:50051', generateCredentials(), channel_options);
 
     let employeeId;
     if (process.argv.length >= 3) {
