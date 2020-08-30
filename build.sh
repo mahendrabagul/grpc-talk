@@ -12,8 +12,5 @@ docker build -t mahendrabagul/node-grpc-client ./node_grpc_client && docker push
 
 kubectl apply -f node_grpc_server/kubernetes/deployment.yaml
 kubectl apply -f node_grpc_server/kubernetes/service.yaml
-kubectl wait --namespace infranauts-meetup \
-  --for=condition=ready pod \
-  --selector=app=node-grpc-server \
-  --timeout=120s
+kubectl wait --namespace infranauts-meetup --for=condition=ready pod --selector=app=node-grpc-server --timeout=120s
 kubectl apply -f node_grpc_client/kubernetes/deployment.yaml
