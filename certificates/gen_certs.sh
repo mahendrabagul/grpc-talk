@@ -44,7 +44,7 @@ mkdir -p clientCertificates
 cd clientCertificates || exit
 echo "Generating gRPC Client certificate ..."
 echo "==================================================================="
-openssl req -nodes -new -keyout grpc-client.key -out grpc-client.csr -subj "/C=IN/ST=MH/L=Pune/O=InfraCloud/OU=InfraNauts Meetup/CN=grpc-client" -config ../openssl.cnf -passout pass:1111
+openssl req -nodes -new -keyout grpc-client.key -out grpc-client.csr -subj "/C=IN/ST=MH/L=Pune/O=InfraCloud/OU=InfraNauts Meetup/CN=node-grpc-server.infranauts-meetup.svc.mahendrabagul.github.io" -config ../openssl.cnf -passout pass:1111
 openssl x509 -days 90 -req -in grpc-client.csr  -CA ../clientCA/grpc-client-ca.crt -CAkey ../clientCA/grpc-client-ca.key -out grpc-client.crt -extfile ../openssl.cnf -extensions usr_cert -passin pass:1111 -CAcreateserial
 
 cd ..
