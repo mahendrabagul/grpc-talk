@@ -34,7 +34,7 @@ mkdir -p serverCertificates
 cd serverCertificates || exit
 echo "Generating gRPC Server certificate ..."
 echo "==================================================================="
-openssl req -nodes -new -keyout grpc-server.key -out grpc-server.csr -subj "/C=IN/ST=MH/L=Pune/O=InfraCloud/OU=InfraNauts Meetup/CN=localhost" -config ../openssl.cnf -passout pass:1111
+openssl req -nodes -new -keyout grpc-server.key -out grpc-server.csr -subj "/C=IN/ST=MH/L=Pune/O=InfraCloud/OU=InfraNauts Meetup/CN=mahendrabagul.tech" -config ../openssl.cnf -passout pass:1111
 openssl x509 -days 365 -req -in grpc-server.csr  -CAcreateserial -CA ../serverCA/grpc-server-ca.crt -CAkey ../serverCA/grpc-server-ca.key -out grpc-server.crt -extfile ../openssl.cnf -extensions server_cert -passin pass:1111
 
 cd ..
@@ -54,6 +54,6 @@ mkdir -p certificatesChain
 cd certificatesChain || exit
 echo "Generating certificate chain..."
 echo "==================================================================="
-cat ../clientCA/grpc-client-ca.crt ../serverCA/grpc-server-ca.crt ../rootCA/grpc-root-ca.crt > grpc-root-ca-and-grpc-client-ca-and-grpc-server-ca-chain.crt
+cat ../clientCA/grpc-client-ca.crt ../serverCA/grpc-server-ca.crt ../rootCA/grpc-root-ca.crt > grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt
 cat ../serverCA/grpc-server-ca.crt ../rootCA/grpc-root-ca.crt > grpc-root-ca-and-grpc-server-ca-chain.crt
 cd ..

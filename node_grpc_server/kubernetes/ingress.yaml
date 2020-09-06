@@ -14,14 +14,14 @@ metadata:
   namespace: infranauts-meetup
 spec:
   rules:
-    - host: localhost
+    - host: mahendrabagul.tech
       http:
         paths:
           - backend:
               serviceName: node-grpc-server
-              servicePort: 30110
+              servicePort: 50051
             path: /
   tls:
     - hosts:
-        - localhost
+        - mahendrabagul.tech
       secretName: grpc-ingress-server-certificates

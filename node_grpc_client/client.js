@@ -10,13 +10,13 @@ let channel_options = {
 
 let generateCredentials = () => {
     let credentials = grpc.credentials.createSsl(
-        fs.readFileSync('/app/Certs/grpc-root-ca-and-grpc-client-ca-and-grpc-server-ca-chain.crt'),
+        fs.readFileSync('/app/Certs/grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt'),
         fs.readFileSync('/app/Certs/grpc-client.crt'),
         fs.readFileSync('/app/Certs/grpc-client.key')
     );
 
     // let credentials = grpc.credentials.createSsl(
-    //     fs.readFileSync('../certificates/certificatesChain/grpc-root-ca-and-grpc-client-ca-and-grpc-server-ca-chain.crt'),
+    //     fs.readFileSync('../certificates/certificatesChain/grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt'),
     //     fs.readFileSync('../certificates/clientCertificates/grpc-client.key'),
     //     fs.readFileSync('../certificates/clientCertificates/grpc-client.crt')
     // );
@@ -44,9 +44,9 @@ let EmployeeService = grpc.loadPackageDefinition(packageDefinition).employee.Emp
 
 function main() {
     // let client = new EmployeeService('rebrand-hec-proxygrpc.labgsd.com:443', generateCredentials(), channel_options);
-    let client = new EmployeeService('node-grpc-server.infranauts-meetup.svc.mahendrabagul.github.io:50051',  generateCredentials(), channel_options);
-    // let client = new EmployeeService('node-grpc-server.infranauts-meetup.svc.mahendrabagul.github.io:50051',  grpc.credentials.createInsecure()); //working
-    // let client = new EmployeeService('192.168.1.11:30110', generateCredentials(), channel_options); // working
+    // let client = new EmployeeService('node-grpc-server.infranauts-meetup.svc.mahendrabagul.github.io:50051',  generateCredentials(), channel_options);
+    let client = new EmployeeService('192.168.1.12:30110',  grpc.credentials.createInsecure()); //working
+    // let client = new EmployeeService('192.168.1.12:50051', generateCredentials(), channel_options); // working
 
     let employeeId;
     if (process.argv.length >= 3) {
