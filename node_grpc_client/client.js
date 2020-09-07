@@ -43,10 +43,10 @@ let packageDefinition = protoLoader.loadSync(
 let EmployeeService = grpc.loadPackageDefinition(packageDefinition).employee.EmployeeService;
 
 function main() {
-    // let client = new EmployeeService('rebrand-hec-proxygrpc.labgsd.com:443', generateCredentials(), channel_options);
-    // let client = new EmployeeService('node-grpc-server.infranauts-meetup.svc.mahendrabagul.github.io:50051',  generateCredentials(), channel_options);
-    let client = new EmployeeService('192.168.1.12:30110',  grpc.credentials.createInsecure()); //working
-    // let client = new EmployeeService('192.168.1.12:50051', generateCredentials(), channel_options); // working
+    // let client = new EmployeeService('mahendrabagul.tech:443', generateCredentials(), channel_options);
+    // let client = new EmployeeService('192.168.1.12:30110',  grpc.credentials.createInsecure()); //working1 from outside cluster
+    // let client = new EmployeeService('192.168.1.12:30110', generateCredentials(), channel_options); // working2 from outside cluster
+    let client = new EmployeeService('node-grpc-server.infranauts-meetup.svc.cluster.local:50051',  generateCredentials(), channel_options);
 
     let employeeId;
     if (process.argv.length >= 3) {

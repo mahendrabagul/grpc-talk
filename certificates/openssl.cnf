@@ -46,6 +46,5 @@ subjectAltName          = @alt_names
 [ alt_names ]
 DNS.1                   = localhost
 DNS.2                   = mahendrabagul.tech
-DNS.3                   = 192.168.1.11
-DNS.4                   = 192.168.1.12
-DNS.5                   = node-grpc-server
+DNS.3                   = http://mahendrabagul.tech
+DNS.4                   = https://mahendrabagul.tech

@@ -3,7 +3,7 @@ kubectl create namespace infranauts-meetup
 kubectl -n infranauts-meetup create secret generic grpc-client-certificates \
 --from-file=./clientCertificates/grpc-client.crt \
 --from-file=./clientCertificates/grpc-client.key \
---from-file=./certificatesChain/grpc-root-ca-and-grpc-client-ca-and-grpc-server-ca-chain.crt
+--from-file=./certificatesChain/grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt
 
 kubectl -n infranauts-meetup create secret generic grpc-root-ca-and-grpc-server-ca-certificates \
 --from-file=./rootCA/grpc-root-ca.crt \
