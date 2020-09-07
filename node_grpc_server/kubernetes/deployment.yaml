@@ -19,6 +19,17 @@ spec:
         - name: node-grpc-server
           image: mahendrabagul/node-grpc-server
           imagePullPolicy: Always
+          env:
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: node-grpc-config
+                  key: SERVER_PORT
+            - name: IS_SECURED
+              valueFrom:
+                configMapKeyRef:
+                  name: node-grpc-config
+                  key: IS_SECURED
           command:
             - node
           args:

@@ -4,8 +4,8 @@ const protoLoader = require('@grpc/proto-loader');
 const fs = require('fs');
 
 let channel_options = {
-    // 'grpc.ssl_target_name_override' : 'localhost',
-    // 'grpc.default_authority': 'localhost'
+    'grpc.ssl_target_name_override' : 'localhost',
+    'grpc.default_authority': 'localhost'
 };
 
 let generateCredentials = () => {
@@ -43,10 +43,12 @@ let packageDefinition = protoLoader.loadSync(
 let EmployeeService = grpc.loadPackageDefinition(packageDefinition).employee.EmployeeService;
 
 function main() {
-    // let client = new EmployeeService('mahendrabagul.tech:443', generateCredentials(), channel_options);
-    // let client = new EmployeeService('192.168.1.12:30110',  grpc.credentials.createInsecure()); //working1 from outside cluster
-    // let client = new EmployeeService('192.168.1.12:30110', generateCredentials(), channel_options); // working2 from outside cluster
-    let client = new EmployeeService('node-grpc-server.infranauts-meetup.svc.cluster.local:50051',  generateCredentials(), channel_options);
+    let client;
+    if ((JSON.parse(process.env.IS_SECURED))){
+        client = new EmployeeService(`${process.env.SERVER_ADDRESS}:${process.env.SERVER_PORT}`, generateCredentials(), channel_options);
+    } else {
+        client = new EmployeeService(`${process.env.SERVER_ADDRESS}:${process.env.SERVER_PORT}`, grpc.credentials.createInsecure());
+    }
 
     let employeeId;
     if (process.argv.length >= 3) {
@@ -59,4 +61,4 @@ function main() {
     });
 }
 
-main();
+setInterval(() => main(), 15000);

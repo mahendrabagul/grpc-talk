@@ -39,9 +39,16 @@ function getDetails(call, callback) {
 
 const server = new grpc.Server();
 server.addService(EmployeeService.service, {getDetails: getDetails});
-server.bind(`0.0.0.0:50051`, credentials);
-// server.bind(`0.0.0.0:50051`, grpc.ServerCredentials.createInsecure()); //working1
-// server.bind(`0.0.0.0:50051`, credentials); //working2
-// server.bind(`0.0.0.0:${process.env.SERVER_PORT}`, grpc.ServerCredentials.createInsecure());
+if (JSON.parse(process.env.IS_SECURED)){
+    console.log("Secured Server")
+    server.bind(`0.0.0.0:${process.env.SERVER_PORT}`, credentials);
+} else {
+    console.log("Insecured Server")
+    server.bind(`0.0.0.0:${process.env.SERVER_PORT}`, grpc.ServerCredentials.createInsecure());
+}
 server.start();
-console.info('GRPC server started at port', 50051);
+
+console.info('------------------------------------------------------------------');
+console.info('isSecured: ', `${process.env.IS_SECURED}`);
+console.info(`GRPC server started at port:`, `${process.env.SERVER_PORT}`);
+console.info('------------------------------------------------------------------');
