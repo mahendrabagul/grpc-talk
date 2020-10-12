@@ -21,12 +21,13 @@ let generateCredentials = () => {
     //     fs.readFileSync('../certificates/clientCertificates/grpc-client.crt')
     // );
 
-    const clientInfo = grpc.credentials.createFromMetadataGenerator((args, callback) => {
-        const metadata = new grpc.Metadata();
-        metadata.add('clientMetadata', '6fe12610-3d06-4f4f-944b-9be83a309e9e');
-        callback(null, metadata);
-    });
-    return grpc.credentials.combineChannelCredentials(credentials, clientInfo);
+    return credentials;
+    // const clientInfo = grpc.credentials.createFromMetadataGenerator((args, callback) => {
+    //     const metadata = new grpc.Metadata();
+    //     metadata.add('clientMetadata', '6fe12610-3d06-4f4f-944b-9be83a309e9e');
+    //     callback(null, metadata);
+    // });
+    // return grpc.credentials.combineChannelCredentials(credentials, clientInfo);
 }
 
 let packageDefinition = protoLoader.loadSync(

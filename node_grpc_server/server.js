@@ -21,7 +21,7 @@ let credentials = grpc.ServerCredentials.createSsl(
     fs.readFileSync('/app/Certs/grpc-root-ca-and-grpc-server-ca-chain.crt'), [{
     cert_chain: fs.readFileSync('/app/Certs/grpc-server.crt'),
     private_key: fs.readFileSync('/app/Certs/grpc-server.key')
-}], true);
+}], false);
 
 // let credentials = grpc.ServerCredentials.createSsl(
 //     fs.readFileSync('../certificates/certificatesChain/grpc-root-ca-and-grpc-server-ca-chain.crt'), [{

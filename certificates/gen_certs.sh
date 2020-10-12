@@ -54,6 +54,7 @@ mkdir -p certificatesChain
 cd certificatesChain || exit
 echo "Generating certificate chain..."
 echo "==================================================================="
-cat ../clientCA/grpc-client-ca.crt ../serverCA/grpc-server-ca.crt ../rootCA/grpc-root-ca.crt > grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt
 cat ../serverCA/grpc-server-ca.crt ../rootCA/grpc-root-ca.crt > grpc-root-ca-and-grpc-server-ca-chain.crt
+cat ../clientCA/grpc-client-ca.crt ../certificatesChain/grpc-root-ca-and-grpc-server-ca-chain.crt > grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt
+
 cd ..
