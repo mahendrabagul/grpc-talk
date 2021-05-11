@@ -1,5 +1,5 @@
 const PROTO_PATH = __dirname + '/employee.proto';
-const grpc = require('grpc');
+const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const fs = require('fs');
 
@@ -9,17 +9,17 @@ let channel_options = {
 };
 
 let generateCredentials = () => {
-    let credentials = grpc.credentials.createSsl(
-        fs.readFileSync('/app/Certs/grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt'),
-        fs.readFileSync('/app/Certs/grpc-client.crt'),
-        fs.readFileSync('/app/Certs/grpc-client.key')
-    );
+//    let credentials = grpc.credentials.createSsl(
+//        fs.readFileSync('/app/Certs/grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt'),
+//        fs.readFileSync('/app/Certs/grpc-client.crt'),
+//        fs.readFileSync('/app/Certs/grpc-client.key')
+//    );
 
-    // let credentials = grpc.credentials.createSsl(
-    //     fs.readFileSync('../certificates/certificatesChain/grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt'),
-    //     fs.readFileSync('../certificates/clientCertificates/grpc-client.key'),
-    //     fs.readFileSync('../certificates/clientCertificates/grpc-client.crt')
-    // );
+     let credentials = grpc.credentials.createSsl(
+         fs.readFileSync('../certificates/certificatesChain/grpc-root-ca-and-grpc-server-ca-and-grpc-client-ca-chain.crt'),
+         fs.readFileSync('../certificates/clientCertificates/grpc-client.key'),
+         fs.readFileSync('../certificates/clientCertificates/grpc-client.crt')
+     );
 
     return credentials;
     // const clientInfo = grpc.credentials.createFromMetadataGenerator((args, callback) => {
@@ -45,11 +45,11 @@ let EmployeeService = grpc.loadPackageDefinition(packageDefinition).employee.Emp
 
 function main() {
     let client;
-    if ((JSON.parse(process.env.IS_SECURED))){
-        client = new EmployeeService(`${process.env.SERVER_ADDRESS}:${process.env.SERVER_PORT}`, generateCredentials(), channel_options);
-    } else {
-        client = new EmployeeService(`${process.env.SERVER_ADDRESS}:${process.env.SERVER_PORT}`, grpc.credentials.createInsecure());
-    }
+     if ((JSON.parse(process.env.IS_SECURED))){
+         client = new EmployeeService(`${process.env.SERVER_ADDRESS}:${process.env.SERVER_PORT}`, generateCredentials(), channel_options);
+//     } else {
+//        client = new EmployeeService(`${process.env.SERVER_ADDRESS}:${process.env.SERVER_PORT}`, grpc.credentials.createInsecure());
+     }
 
     let employeeId;
     if (process.argv.length >= 3) {
@@ -62,4 +62,4 @@ function main() {
     });
 }
 
-setInterval(() => main(), 15000);
+setInterval(() => main(), 5000);

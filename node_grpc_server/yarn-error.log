@@ -1,0 +1,44 @@
+Arguments: 
+  /home/mahendrabagul/.nvm/versions/node/v14.16.1/bin/node /home/mahendrabagul/.nvm/versions/node/v14.16.1/bin/yarn add @grpc/proto-loader
+
+PATH: 
+  /home/mahendrabagul/.sdkman/candidates/micronaut/current/bin:/home/mahendrabagul/.getistio/bin:/home/mahendrabagul/.jdks/corretto-1.8.0_292/bin:/home/mahendrabagul/DevEnv/lingk/programs/sonar-scanner-4.6.1.2450-linux/bin:/home/mahendrabagul/.krew/bin:/home/mahendrabagul/.wasme/bin:/home/mahendrabagul/.nvm/versions/node/v14.16.1/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/home/mahendrabagul/.getistio/bin:/home/mahendrabagul/.rvm/gems/ruby-2.6.6/bin:/home/mahendrabagul/.rvm/gems/ruby-2.6.6@global/bin:/home/mahendrabagul/.rvm/rubies/ruby-2.6.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/mahendrabagul/.rvm/bin:/home/mahendrabagul/.rvm/bineval:/opt/intellijidea/bin:/home/mahendrabagul/Downloads/liquibase-4.0.0:/home/mahendrabagul/.fzf/bin:/home/mahendrabagul/.rvm/bin:/usr/local/go/bin:/home/mahendrabagul/go/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.16.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: http://npmreg.labgsd.com:4873/grpc: ETIMEDOUT
+      at Timeout._onTimeout (/home/mahendrabagul/.nvm/versions/node/v14.16.1/lib/node_modules/yarn/lib/cli.js:141322:19)
+      at listOnTimeout (internal/timers.js:554:17)
+      at processTimers (internal/timers.js:497:7)
+
+npm manifest: 
+  {
+    "name": "node_grpc_server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@grpc/proto-loader": "^0.1.0",
+      "grpc": "^1.24.3",
+      "lodash": "^4.6.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
