@@ -39,13 +39,13 @@ spec:
             - node
           args:
             - client.js
-#          resources:
-#            requests:
-#              memory: "200Mi"
-#              cpu: "100m"
-#            limits:
-#              memory: "400Mi"
-#              cpu: "200m"
+          #          resources:
+          #            requests:
+          #              memory: "200Mi"
+          #              cpu: "100m"
+          #            limits:
+          #              memory: "400Mi"
+          #              cpu: "200m"
           volumeMounts:
             - name: grpc-client-certificates
               mountPath: app/Certs/

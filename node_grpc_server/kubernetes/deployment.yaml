@@ -35,13 +35,13 @@ spec:
           args:
             - --max-old-space-size=2048
             - server.js
-#          resources:
-#            requests:
-#              memory: "200Mi"
-#              cpu: "100m"
-#            limits:
-#              memory: "400Mi"
-#              cpu: "200m"
+          #          resources:
+          #            requests:
+          #              memory: "200Mi"
+          #              cpu: "100m"
+          #            limits:
+          #              memory: "400Mi"
+          #              cpu: "200m"
           ports:
             - containerPort: 50051
               name: grpc

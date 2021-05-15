@@ -18,6 +18,6 @@ message EmployeeResponse{
 message EmployeeDetails {
   int32 id = 1;
   string email = 2;
-  string firstName = 3; 
+  string firstName = 3;
   string lastName = 4;
 }
